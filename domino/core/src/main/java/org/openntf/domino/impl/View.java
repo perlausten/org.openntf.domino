@@ -1372,7 +1372,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@Override
 	public Document getDocumentByKey(final Object key) {
 		// return getDocumentByKey(key, getAncestorSession().isViewExactMatch());
-		return getDocumentByKey(key);
+		return getDocumentByKey(key, false);
 	}
 
 	/*
@@ -1409,7 +1409,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@Override
 	public Document getDocumentByKey(final java.util.Vector keys) {
 		// return getDocumentByKey((Object) keys, getAncestorSession().isViewExactMatch());
-		return getDocumentByKey((Object) keys);
+		return getDocumentByKey((Object) keys, false);
 	}
 
 	/*
@@ -1431,7 +1431,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@Override
 	public ViewEntry getEntryByKey(final Object key) {
 		// return getEntryByKey(key, getAncestorSession().isViewExactMatch());
-		return getEntryByKey(key);
+		return getEntryByKey(key, false);
 	}
 
 	/*
@@ -1467,7 +1467,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@Override
 	public ViewEntry getEntryByKey(final Vector keys) {
 		// return getEntryByKey((Object) keys, getAncestorSession().isViewExactMatch());
-		return getEntryByKey((Object) keys);
+		return getEntryByKey((Object) keys, false);
 	}
 
 	/*
@@ -2954,7 +2954,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 
 	@Override
 	public Document getFirstDocumentByKey(final Object key) {
-		return this.getDocumentByKey(key);
+		return this.getDocumentByKey(key, true);
 	}
 
 	@Override
@@ -2965,7 +2965,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Document getFirstDocumentByKey(final Vector keys) {
-		return this.getDocumentByKey(keys);
+		return this.getDocumentByKey(keys, true);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -2976,7 +2976,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 
 	@Override
 	public ViewEntry getFirstEntryByKey(final Object key) {
-		return this.getEntryByKey(key);
+		return this.getEntryByKey(key, true);
 	}
 
 	@Override
@@ -2987,7 +2987,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@SuppressWarnings("rawtypes")
 	@Override
 	public ViewEntry getFirstEntryByKey(final Vector keys) {
-		return this.getEntryByKey(keys);
+		return this.getEntryByKey(keys, true);
 	}
 
 	@SuppressWarnings("rawtypes")
