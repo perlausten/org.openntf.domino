@@ -1175,4 +1175,5 @@ public interface AdministrationProcess extends Base<lotus.domino.AdministrationP
 	@Override
 	public String deleteUser(String arg0, boolean arg1, int arg2, String arg3, boolean arg4, int arg5);
 
+	public String approveRenamePersonCommonNameInDirectory(String arg0);
 }

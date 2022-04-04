@@ -245,6 +245,19 @@ org.openntf.domino.Registration {
 			return false;
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.openntf.domino.Registration#crossCertify(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean crossCertify(final String idFile, final String certPassword, final String comment, final String idPassword) {
+		try {
+			return getDelegate().crossCertify(idFile, certPassword, comment, idPassword);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return false;
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -1650,6 +1663,33 @@ org.openntf.domino.Registration {
 	@Override
 	protected WrapperFactory getFactory() {
 		return parent.getFactory();
+	}
+	
+	/**
+	 * @since Notes/Domino 11.0.1
+	 * @since 11.0.1
+	 */
+	@Override
+	public String getContactNoteID() {
+		try {
+			return getDelegate().getContactNoteID();
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return null;
+		}
+	}
+
+	/**
+	 * @since Notes/Domino 11.0.1
+	 * @since 11.0.1
+	 */
+	@Override
+	public void setContactNoteID(String noteId) {
+		try {
+			getDelegate().setContactNoteID(noteId);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		}
 	}
 
 }

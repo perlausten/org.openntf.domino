@@ -39,8 +39,10 @@ import java.util.Vector;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import lotus.domino.DominoQuery;
 import lotus.domino.NotesError;
 import lotus.domino.NotesException;
+import lotus.domino.QueryResultsProcessor;
 import lotus.domino.UserID;
 
 import org.openntf.domino.ACL;
@@ -3917,9 +3919,102 @@ public class Database extends BaseResurrectable<org.openntf.domino.Database, lot
 		return ACL.Privilege.getPrivileges(privs);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.openntf.domino.Database#getUserID(java.lang.String, java.lang.String)
+	 */
 	@Override
-	public UserID getUserID(final String arg0, final String arg1) throws NotesException {
-		return getDelegate().getUserID(arg0, arg1);
+	public org.openntf.domino.UserID getUserID(final String userId, final String password) {
+		return null;
+	}
+
+	@Override
+	public Document getNamedDocument(final String name, final String userName) {
+		try {
+			lotus.domino.Document lotus = getDelegate().getNamedDocument(name, userName);
+			return fromLotus(lotus, Document.SCHEMA, this);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return null;
+		}
+	}
+
+	@Override
+	public Document getNamedDocument(final String name) {
+		try {
+			lotus.domino.Document lotus = getDelegate().getNamedDocument(name);
+			return fromLotus(lotus, Document.SCHEMA, this);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return null;
+		}
+	}
+
+	@Override
+	public DocumentCollection getNamedDocumentCollection() {
+		try {
+			lotus.domino.DocumentCollection lotus = getDelegate().getNamedDocumentCollection();
+			return fromLotus(lotus, DocumentCollection.SCHEMA, this);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return null;
+		}
+	}
+
+	@Override
+	public DocumentCollection getNamedDocumentCollection(final String name) {
+		try {
+			lotus.domino.DocumentCollection lotus = getDelegate().getNamedDocumentCollection(name);
+			return fromLotus(lotus, DocumentCollection.SCHEMA, this);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+			return null;
+		}
+	}
+
+	@Override
+	public void removeAllQueryNamedResults() {
+		try {
+			getDelegate().removeAllQueryNamedResults();
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		}
+	}
+
+	@Override
+	public void transactionBegin() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void transactionCommit() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void transactionRollback() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public lotus.domino.Database createFromTemplate(final String arg0, final String arg1, final boolean arg2, final int arg3,
+			final boolean arg4) throws NotesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DominoQuery createDominoQuery() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public QueryResultsProcessor createQueryResultsProcessor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

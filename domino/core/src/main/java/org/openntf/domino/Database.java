@@ -19,6 +19,9 @@ import java.io.Externalizable;
 import java.util.Comparator;
 import java.util.Vector;
 
+import lotus.domino.DominoQuery;
+import lotus.domino.QueryResultsProcessor;
+
 import org.openntf.domino.annotations.Incomplete;
 import org.openntf.domino.annotations.Legacy;
 import org.openntf.domino.types.FactorySchema;
@@ -2846,5 +2849,107 @@ public interface Database extends lotus.domino.Database, org.openntf.domino.Base
 	 */
 	@Override
 	public void setUserIDFileForDecrypt(String arg0, String arg1);
+
+	/**
+	 * Get a UserID for a user from the ID Vault, relevant for encryption support
+	 *
+	 * @param id
+	 *            file. Provides the file path of id file. After setting it, all documents in this database will be decrypted with
+	 *            encryption keys of this id file.
+	 * @param password
+	 *            Password. After setting the User id, documents in this database will be decrypted with encryption keys of this user id
+	 * @since Domino 9.0.1 FP8
+	 */
+	@Override
+	public UserID getUserID(final String userId, final String password);
+
+	/**
+	 * Creates a new DQL query processor.
+	 *
+	 * @since Domino 10.0.1
+	 */
+	@Override
+	public DominoQuery createDominoQuery();
+
+	@Override
+	QueryResultsProcessor createQueryResultsProcessor();
+
+	/**
+	 * Retrieves a named document. This is as distinct from document IDs and profile document names.
+	 *
+	 * @param name
+	 *            the name of the document
+	 * @param userName
+	 *            the user name associated with the document
+	 * @return the named document
+	 * @since 12.0.1
+	 */
+	@Override
+	Document getNamedDocument(String name, String userName);
+
+	/**
+	 * Retrieves a named document. This is as distinct from document IDs and profile document names.
+	 *
+	 * @param name
+	 *            the name of the document
+	 * @return the named document
+	 * @since 12.0.1
+	 */
+	@Override
+	Document getNamedDocument(String name);
+
+	/**
+	 * Retrieves the collection of all named documents in the database.
+	 *
+	 * @return the named-document collection
+	 * @since 12.0.1
+	 * @see #getNamedDocument
+	 */
+	@Override
+	DocumentCollection getNamedDocumentCollection();
+
+	/**
+	 * Retrieves the collection of all named documents in the database matching the given name.
+	 *
+	 * @param name
+	 *            the name of the documents to retrieve
+	 * @return the named-document collection
+	 * @since 12.0.1
+	 * @see #getNamedDocument
+	 */
+	@Override
+	DocumentCollection getNamedDocumentCollection(String name);
+
+	/**
+	 * Removes all stored results saved in the database by {@link DominoQuery}.
+	 *
+	 * @since 12.0.1
+	 */
+	@Override
+	void removeAllQueryNamedResults();
+
+	/**
+	 * Begins a database transaction.
+	 *
+	 * @since 12.0.0
+	 */
+	@Override
+	void transactionBegin();
+
+	/**
+	 * Commits an active transaction to disk.
+	 *
+	 * @since 12.0.0
+	 */
+	@Override
+	void transactionCommit();
+
+	/**
+	 * Rolls back an active transaction.
+	 *
+	 * @since 12.0.0
+	 */
+	@Override
+	void transactionRollback();
 
 }

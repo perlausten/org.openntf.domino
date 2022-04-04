@@ -2159,6 +2159,16 @@ public class Session extends BaseResurrectable<org.openntf.domino.Session, lotus
 	}
 
 	@Override
+	public boolean applicationShouldQuit() {
+		try {
+			return getDelegate().applicationShouldQuit();
+		} catch (Exception e) {
+			DominoUtils.handleException(e);
+		}
+		return false;
+	}
+
+	@Override
 	public Name getServerNameAsName() {
 		return createName(getServerName());
 	}

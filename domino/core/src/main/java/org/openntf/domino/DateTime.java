@@ -585,4 +585,13 @@ public interface DateTime extends Base<lotus.domino.DateTime>, lotus.domino.Date
 	// * @return Java Calendar object, same as used internally by org.openntf.domino.DateTime class
 	// */
 	// public Calendar toJavaCal();
+	
+	/**
+	 * Gets the replica ID corresponding to a timestamp
+	 *
+	 * @return 16 character hex string
+	 * @since Domino V10
+	 */
+	@Override
+	public String getReplicaID();
 }

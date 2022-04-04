@@ -366,4 +366,25 @@ public interface RichTextItem extends lotus.domino.RichTextItem, org.openntf.dom
 	 */
 	@Override
 	public void update();
+	
+	/*
+	 * Converts the Rich Text Item from Notes Rich Text to HTML and MIME
+	 *
+	 * @param options
+	 * 		TODO: Documentation in Beta 2 is missing as to what options can be missed
+	 * @return converted HTML as a string
+	 * @since Domino V10
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String convertToHTML(Vector options);
+
+	/*
+	 * Gets any cid references to attachments from Notes Rich Text converted to HTML and MIME
+	 *
+	 * @return Vector of cid references
+	 * @since Domino V10
+	 */
+	@Override
+	public Vector<String> getHTMLReferences();
 }

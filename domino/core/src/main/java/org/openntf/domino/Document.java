@@ -2694,5 +2694,54 @@ public interface Document extends Base<lotus.domino.Document>, lotus.domino.Docu
 	 */
 	@Override
 	public void encrypt(String arg0, String arg1);
+	
+	/**
+	 * Whether send method should be aborted
+	 *
+	 * @return cancel sending
+	 * @since 10.0.0
+	 */
+	@Override
+	public boolean isCancelSendOnMissingKey();
+
+	/**
+	 * Whether or not send method should be aborted
+	 * @param cancelSend to cancel sending
+	 * @since 10.0.0
+	 */
+	@Override
+	public void setCancelSendOnMissingKey(final boolean cancelSend);
+
+	/**
+	 * Retrieves the name of the document, if it is a named document.
+	 * 
+	 * @return the name of the document, or an empty value if it is
+	 *         not named
+	 * @since 12.0.1
+	 */
+	@Override
+	String getNameOfDoc();
+	
+	/**
+	 * Retrieves the user name of the document, if it is a named document
+	 * with an associated user name.
+	 * 
+	 * @return the user name of the document, or an empty value if it is
+	 *         not named or does not have an associated user name
+	 * @since 12.0.1
+	 */
+	@Override
+	String getUserNameOfDoc();
+	
+	/**
+	 * Determines whether the document is a named document. This differs from
+	 * the profile-document mechanism.
+	 * 
+	 * @return {@code true} if the document is a named document; {@code false}
+	 *         otherwise
+	 * @since 12.0.1
+	 */
+	@Override
+	boolean isNamedDoc();
 
 }

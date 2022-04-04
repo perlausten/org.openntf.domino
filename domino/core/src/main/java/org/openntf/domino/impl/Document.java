@@ -1253,8 +1253,8 @@ public class Document extends BaseResurrectable<org.openntf.domino.Document, lot
 			throw new IllegalArgumentException("Type '" + type.getName() + "' is not scalar.");
 		}
 		List<T> tmp = new ArrayList<T>(vals.size());
-		for (int i = 0; i < vals.size(); i++) {
-			tmp.add(TypeUtils.objectToClass(vals.get(i), type, getAncestorSession()));
+		for (Object val : vals) {
+			tmp.add(TypeUtils.objectToClass(val, type, getAncestorSession()));
 		}
 		return tmp;
 	}
@@ -4447,6 +4447,55 @@ public class Document extends BaseResurrectable<org.openntf.domino.Document, lot
 			getDelegate().encrypt(arg0, arg1);
 		} catch (Exception e) {
 			DominoUtils.handleException(e, this);
+		}
+	}
+
+	@Override
+	public boolean isCancelSendOnMissingKey() {
+		try {
+			return getDelegate().isCancelSendOnMissingKey();
+		} catch (Exception e) {
+			DominoUtils.handleException(e, this);
+			return false;
+		}
+	}
+
+	@Override
+	public void setCancelSendOnMissingKey(final boolean cancelSend) {
+		try {
+			getDelegate().setCancelSendOnMissingKey(cancelSend);
+		} catch (Exception e) {
+			DominoUtils.handleException(e, this);
+		}
+	}
+
+	@Override
+	public String getNameOfDoc() {
+		try {
+			return getDelegate().getNameOfDoc();
+		} catch (Exception e) {
+			DominoUtils.handleException(e, this);
+			return null;
+		}
+	}
+
+	@Override
+	public String getUserNameOfDoc() {
+		try {
+			return getDelegate().getUserNameOfDoc();
+		} catch (Exception e) {
+			DominoUtils.handleException(e, this);
+			return null;
+		}
+	}
+
+	@Override
+	public boolean isNamedDoc() {
+		try {
+			return getDelegate().isNamedDoc();
+		} catch (Exception e) {
+			DominoUtils.handleException(e, this);
+			return false;
 		}
 	}
 }

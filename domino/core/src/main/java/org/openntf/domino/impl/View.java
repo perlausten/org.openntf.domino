@@ -1,17 +1,17 @@
-/*
- * Copyright 2013
+/**
+ * Copyright © 2013-2021 The OpenNTF Domino API Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
- * implied. See the License for the specific language governing
- * permissions and limitations under the License.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.openntf.domino.impl;
 
@@ -55,10 +55,10 @@ import org.openntf.domino.utils.DominoUtils;
 import org.openntf.domino.utils.Factory;
 import org.openntf.domino.utils.Factory.SessionType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class View.
  */
+@SuppressWarnings({ "deprecation", "nls" })
 public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domino.View, Database> implements org.openntf.domino.View {
 	private static final Logger log_ = Logger.getLogger(View.class.getName());
 	private transient List<DominoColumnInfo> columnInfo_;
@@ -228,6 +228,22 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	/*
 	 * (non-Javadoc)
 	 *
+	 * @see org.openntf.domino.View#FTSearchSorted(java.lang.String, int, int, boolean, boolean, boolean, boolean)
+	 */
+	@Override
+	public int FTSearchSorted(final String query, final int maxDocs, final int column, final boolean ascending, final boolean exact,
+			final boolean variants, final boolean fuzzy, final boolean webQuerySyntax) {
+		try {
+			return getDelegate().FTSearchSorted(query, maxDocs, column, ascending, exact, variants, fuzzy, webQuerySyntax);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		}
+		return -1;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see org.openntf.domino.View#FTSearchSorted(java.lang.String, int, java.lang.String)
 	 */
 	@Override
@@ -250,6 +266,22 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 			final boolean variants, final boolean fuzzy) {
 		try {
 			return getDelegate().FTSearchSorted(query, maxDocs, column, ascending, exact, variants, fuzzy);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		}
+		return -1;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.openntf.domino.View#FTSearchSorted(java.lang.String, int, java.lang.String, boolean, boolean, boolean, boolean)
+	 */
+	@Override
+	public int FTSearchSorted(final String query, final int maxDocs, final String column, final boolean ascending, final boolean exact,
+			final boolean variants, final boolean fuzzy, final boolean webQuerySyntax) {
+		try {
+			return getDelegate().FTSearchSorted(query, maxDocs, column, ascending, exact, variants, fuzzy, webQuerySyntax);
 		} catch (NotesException e) {
 			DominoUtils.handleException(e);
 		}
@@ -337,6 +369,27 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	/*
 	 * (non-Javadoc)
 	 *
+	 * @see org.openntf.domino.View#FTSearchSorted(java.util.Vector, int, int, boolean, boolean, boolean, boolean, boolean)
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public int FTSearchSorted(final Vector query, final int maxDocs, final int column, final boolean ascending, final boolean exact,
+			final boolean variants, final boolean fuzzy, final boolean webQuerySyntax) {
+		List<lotus.domino.Base> recycleThis = new ArrayList<lotus.domino.Base>();
+		try {
+			return getDelegate().FTSearchSorted(toDominoFriendly(query, getAncestorSession(), recycleThis), maxDocs, column, ascending,
+					exact, variants, fuzzy, webQuerySyntax);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		} finally {
+			s_recycle(recycleThis);
+		}
+		return -1;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see org.openntf.domino.View#FTSearchSorted(java.util.Vector, int, java.lang.String)
 	 */
 	@SuppressWarnings("rawtypes")
@@ -366,6 +419,27 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		try {
 			return getDelegate().FTSearchSorted(toDominoFriendly(query, getAncestorSession(), recycleThis), maxDocs, column, ascending,
 					exact, variants, fuzzy);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		} finally {
+			s_recycle(recycleThis);
+		}
+		return -1;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.openntf.domino.View#FTSearchSorted(java.util.Vector, int, java.lang.String, boolean, boolean, boolean, boolean)
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public int FTSearchSorted(final Vector query, final int maxDocs, final String column, final boolean ascending, final boolean exact,
+			final boolean variants, final boolean fuzzy, final boolean webQuerySyntax) {
+		List<lotus.domino.Base> recycleThis = new ArrayList<lotus.domino.Base>();
+		try {
+			return getDelegate().FTSearchSorted(toDominoFriendly(query, getAncestorSession(), recycleThis), maxDocs, column, ascending,
+					exact, variants, fuzzy, webQuerySyntax);
 		} catch (NotesException e) {
 			DominoUtils.handleException(e);
 		} finally {
@@ -612,28 +686,6 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.openntf.domino.View#createViewNavFrom(java.lang.Object)
-	 */
-	@Override
-	public ViewNavigator createViewNavFrom(final Object entry) {
-		List<lotus.domino.Base> recycleThis = new ArrayList<lotus.domino.Base>();
-		try {
-			getDelegate().setAutoUpdate(false);
-			getDelegate().setEnableNoteIDsForCategories(true);
-			ViewNavigator result = fromLotus(getDelegate().createViewNavFrom(toLotus(entry)), ViewNavigator.SCHEMA, this);
-			((org.openntf.domino.impl.ViewNavigator) result).setType(ViewNavigator.Types.FROM);
-			return result;
-		} catch (NotesException e) {
-			DominoUtils.handleException(e);
-		} finally {
-			s_recycle(recycleThis);
-		}
-		return null;
-	}
-
 	/**
 	 * This method is neccessary to get some Backend-functions working.<br>
 	 * <font color=red>Attention: The <b>name</b> of the function seems not to be important, but the <b>position</b>!</font> It seems that
@@ -668,6 +720,28 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		}
 		return null;
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.openntf.domino.View#createViewNavFrom(java.lang.Object)
+	 */
+	@Override
+	public ViewNavigator createViewNavFrom(final Object entry) {
+		List<lotus.domino.Base> recycleThis = new ArrayList<lotus.domino.Base>();
+		try {
+			getDelegate().setAutoUpdate(false);
+			getDelegate().setEnableNoteIDsForCategories(true);
+			ViewNavigator result = fromLotus(getDelegate().createViewNavFrom(toLotus(entry)), ViewNavigator.SCHEMA, this);
+			((org.openntf.domino.impl.ViewNavigator) result).setType(ViewNavigator.Types.FROM);
+			return result;
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		} finally {
+			s_recycle(recycleThis);
+		}
+		return null;
 	}
 
 	/*
@@ -1262,7 +1336,8 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		try {
 			try {
 				lotus.domino.View raw = getDelegate();
-				Vector rawColumns = raw.getColumns();
+				@SuppressWarnings("unchecked")
+				Vector<ViewColumn> rawColumns = raw.getColumns();
 				return fromLotusAsVector(rawColumns, org.openntf.domino.ViewColumn.SCHEMA, this);
 			} catch (NullPointerException e) {
 				throw new RuntimeException(
@@ -1296,7 +1371,8 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	 */
 	@Override
 	public Document getDocumentByKey(final Object key) {
-		return getDocumentByKey(key, false);
+		// return getDocumentByKey(key, getAncestorSession().isViewExactMatch());
+		return getDocumentByKey(key);
 	}
 
 	/*
@@ -1332,7 +1408,8 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Document getDocumentByKey(final java.util.Vector keys) {
-		return getDocumentByKey((Object) keys, false);
+		// return getDocumentByKey((Object) keys, getAncestorSession().isViewExactMatch());
+		return getDocumentByKey((Object) keys);
 	}
 
 	/*
@@ -1353,7 +1430,8 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	 */
 	@Override
 	public ViewEntry getEntryByKey(final Object key) {
-		return getEntryByKey(key, false);
+		// return getEntryByKey(key, getAncestorSession().isViewExactMatch());
+		return getEntryByKey(key);
 	}
 
 	/*
@@ -1388,7 +1466,8 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 	@SuppressWarnings("rawtypes")
 	@Override
 	public ViewEntry getEntryByKey(final Vector keys) {
-		return getEntryByKey((Object) keys, false);
+		// return getEntryByKey((Object) keys, getAncestorSession().isViewExactMatch());
+		return getEntryByKey((Object) keys);
 	}
 
 	/*
@@ -3124,6 +3203,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		return getAncestorDatabase().getReplicaID() + getUniversalID();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public ViewNavigator createViewNavFromKey(final Vector arg0, final boolean arg1) {
 		try {
@@ -3144,6 +3224,7 @@ public class View extends BaseResurrectable<org.openntf.domino.View, lotus.domin
 		}
 		Map<Object, Object> result = new LinkedHashMap<Object, Object>();
 		Vector<ViewColumn> columns = getColumns();
+		@SuppressWarnings("unused")
 		int categoryCount = 0;
 		for (ViewColumn column : columns) {
 			if (column.isCategory()) {

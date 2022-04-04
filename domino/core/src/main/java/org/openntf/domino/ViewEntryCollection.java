@@ -383,4 +383,28 @@ public interface ViewEntryCollection extends Base<lotus.domino.ViewEntryCollecti
 	 */
 	@Override
 	public void updateAll();
+	
+	/**
+	 * Removes from a view entry collection any entries whose associated documents are not also contained in a second collection.
+	 *
+	 * @param other the {@link Document}, {@link DocumentCollection}, {@link ViewEntry}, or {@link ViewEntryCollection}
+	 * 		to intersect with this collection
+	 * @param maintainOrder whether the original order of this collection should be retained after intersection
+	 *
+	 * @since Domino 10.0.1
+	 */
+	@Override
+	void intersect(lotus.domino.Base other, boolean maintainOrder);
+
+	/**
+	 * Removes from a view entry collection any entries whose associated documents are also contained in a second collection.
+	 *
+	 * @param other the {@link Document}, {@link DocumentCollection}, {@link ViewEntry}, or {@link ViewEntryCollection}
+	 * 		to remove from this collection
+	 * @param maintainOrder whether the original order of this collection should be retained after subtraction
+	 *
+	 * @since Domino 10.0.1
+	 */
+	@Override
+	void subtract(lotus.domino.Base other, boolean maintainOrder);
 }

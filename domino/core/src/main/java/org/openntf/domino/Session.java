@@ -1099,4 +1099,10 @@ public interface Session extends lotus.domino.Session, org.openntf.domino.ext.Se
 	@Override
 	public IDVault getIDVault(String arg0);
 
+	/*
+	 *
+	 * @since Domino V10
+	 */
+	@Override
+	public boolean applicationShouldQuit();
 }

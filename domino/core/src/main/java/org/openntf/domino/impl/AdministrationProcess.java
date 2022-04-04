@@ -1065,5 +1065,14 @@ public class AdministrationProcess
 		}
 		return null;
 	}
+	
+	public String approveRenamePersonCommonNameInDirectory(String arg0) {
+		try {
+			return getDelegate().approveRenamePersonCommonNameInDirectory(arg0);
+		} catch (NotesException e) {
+			DominoUtils.handleException(e);
+		}
+		return null;
+	}
 
 }
